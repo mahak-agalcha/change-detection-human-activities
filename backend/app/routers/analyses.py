@@ -1,4 +1,5 @@
 import io
+import json
 import uuid
 from pathlib import Path
 
@@ -8,7 +9,8 @@ from sqlalchemy.orm import Session
 
 from ..config import ALLOWED_EXT, MAX_FILE_MB, UPLOAD_DIR
 from ..database import get_db
-from ..models import Analysis
+from ..models import Analysis, ChangeRegion
+from ..services.inference import run_inference
 
 router = APIRouter(prefix="/analyses", tags=["analyses"])
 
@@ -48,6 +50,30 @@ async def create_analysis(
     return {"id": analysis.id, "status": analysis.status}
 
 
+@router.post("/{analysis_id}/run")
+def run_analysis(analysis_id: int, db: Session = Depends(get_db)):
+    analysis = db.get(Analysis, analysis_id)
+    if not analysis:
+        raise HTTPException(404, "Analysis not found")
+
+    results = run_inference(
+        str(UPLOAD_DIR / analysis.old_image_path),
+        str(UPLOAD_DIR / analysis.new_image_path),
+    )
+    analysis.regions.clear()
+    for r in results:
+        analysis.regions.append(ChangeRegion(
+            object_type=r["object_type"],
+            cause_label=r["cause_label"],
+            confidence=r["confidence"],
+            geometry=json.dumps(r["geometry"]),
+        ))
+    analysis.status = "completed"
+    db.commit()
+    return {"id": analysis.id, "status": analysis.status,
+            "regions_found": len(results)}
+
+
 @router.get("/{analysis_id}")
 def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
     analysis = db.get(Analysis, analysis_id)
@@ -57,5 +83,14 @@ def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
         "id": analysis.id,
         "status": analysis.status,
         "created_at": analysis.created_at,
-        "regions": [],
+        "regions": [
+            {
+                "id": r.id,
+                "object_type": r.object_type,
+                "cause_label": r.cause_label,
+                "confidence": r.confidence,
+                "geometry": json.loads(r.geometry) if r.geometry else None,
+            }
+            for r in analysis.regions
+        ],
     }
