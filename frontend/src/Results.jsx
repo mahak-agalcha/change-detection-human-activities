@@ -1,4 +1,5 @@
 import { API } from "./api";
+import ChangeMap from "./ChangeMap";
 
 const CAUSE_TEXT = {
   human: "Likely human-related",
@@ -43,6 +44,8 @@ export default function Results({ result }) {
           <img src={`${API}${result.new_image}`} alt="new" style={{ width: "100%" }} />
         </div>
       </div>
+      <h3>Map</h3>
+      <ChangeMap regions={regions} />
 
       <h3>Detected changes</h3>
       {regions.length === 0 ? (
