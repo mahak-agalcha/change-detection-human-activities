@@ -22,3 +22,10 @@ export async function runAnalysis(id) {
 export async function getAnalysis(id) {
   return handle(await fetch(`${API}/analyses/${id}`));
 }
+export async function listAnalyses() {
+  return handle(await fetch(`${API}/analyses`));
+}
+
+export async function getStats() {
+  return handle(await fetch(`${API}/analyses/stats/summary`));
+}

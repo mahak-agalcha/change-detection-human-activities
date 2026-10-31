@@ -1,6 +1,13 @@
-import { useState } from "react";
-import { createAnalysis, runAnalysis, getAnalysis } from "./api";
+import { useEffect, useState } from "react";
+import {
+  createAnalysis,
+  runAnalysis,
+  getAnalysis,
+  listAnalyses,
+  getStats,
+} from "./api";
 import Results from "./Results";
+import History from "./History";
 
 export default function App() {
   const [oldFile, setOldFile] = useState(null);
@@ -8,6 +15,21 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
+  const [history, setHistory] = useState([]);
+  const [stats, setStats] = useState(null);
+
+  async function refresh() {
+    try {
+      setHistory(await listAnalyses());
+      setStats(await getStats());
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    refresh();
+  }, []);
 
   async function handleSubmit() {
     setError("");
@@ -21,10 +43,27 @@ export default function App() {
       const { id } = await createAnalysis(oldFile, newFile);
       await runAnalysis(id);
       setResult(await getAnalysis(id));
+      await refresh();
     } catch (e) {
       setError(e.message);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function openAnalysis(id) {
+    setError("");
+    try {
+      setResult(await getAnalysis(id));
+      setTimeout(
+        () =>
+          document
+            .getElementById("results")
+            ?.scrollIntoView({ behavior: "smooth" }),
+        100
+      );
+    } catch (e) {
+      setError(e.message);
     }
   }
 
@@ -66,6 +105,8 @@ export default function App() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {result && <Results result={result} />}
+
+      <History history={history} stats={stats} onOpen={openAnalysis} />
     </div>
   );
 }

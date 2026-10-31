@@ -4,14 +4,15 @@ import uuid
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from fastapi.responses import Response
 from PIL import Image
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from ..config import ALLOWED_EXT, MAX_FILE_MB, UPLOAD_DIR
 from ..database import get_db
 from ..models import Analysis, ChangeRegion
 from ..services.inference import run_inference
-from fastapi.responses import Response
 from ..services.report import build_report
 
 router = APIRouter(prefix="/analyses", tags=["analyses"])
@@ -52,6 +53,42 @@ async def create_analysis(
     return {"id": analysis.id, "status": analysis.status}
 
 
+@router.get("")
+def list_analyses(db: Session = Depends(get_db)):
+    rows = db.scalars(
+        select(Analysis).order_by(Analysis.id.desc()).limit(50)
+    ).all()
+    return [
+        {
+            "id": a.id,
+            "status": a.status,
+            "created_at": a.created_at,
+            "regions_count": len(a.regions),
+        }
+        for a in rows
+    ]
+
+
+@router.get("/stats/summary")
+def stats_summary(db: Session = Depends(get_db)):
+    total = db.scalar(select(func.count(Analysis.id))) or 0
+    regions = db.scalar(select(func.count(ChangeRegion.id))) or 0
+    by_type = db.execute(
+        select(ChangeRegion.object_type, func.count())
+        .group_by(ChangeRegion.object_type)
+    ).all()
+    by_cause = db.execute(
+        select(ChangeRegion.cause_label, func.count())
+        .group_by(ChangeRegion.cause_label)
+    ).all()
+    return {
+        "total_analyses": total,
+        "total_regions": regions,
+        "by_object_type": {k: v for k, v in by_type},
+        "by_cause": {k: v for k, v in by_cause},
+    }
+
+
 @router.post("/{analysis_id}/run")
 def run_analysis(analysis_id: int, db: Session = Depends(get_db)):
     analysis = db.get(Analysis, analysis_id)
@@ -76,6 +113,20 @@ def run_analysis(analysis_id: int, db: Session = Depends(get_db)):
             "regions_found": len(results)}
 
 
+@router.get("/{analysis_id}/report")
+def download_report(analysis_id: int, db: Session = Depends(get_db)):
+    analysis = db.get(Analysis, analysis_id)
+    if not analysis:
+        raise HTTPException(404, "Analysis not found")
+    pdf = build_report(analysis)
+    return Response(
+        content=pdf,
+        media_type="application/pdf",
+        headers={"Content-Disposition":
+                 f'attachment; filename="report_{analysis.id}.pdf"'},
+    )
+
+
 @router.get("/{analysis_id}")
 def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
     analysis = db.get(Analysis, analysis_id)
@@ -98,15 +149,3 @@ def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
             for r in analysis.regions
         ],
     }
-@router.get("/{analysis_id}/report")
-def download_report(analysis_id: int, db: Session = Depends(get_db)):
-    analysis = db.get(Analysis, analysis_id)
-    if not analysis:
-        raise HTTPException(404, "Analysis not found")
-    pdf = build_report(analysis)
-    return Response(
-        content=pdf,
-        media_type="application/pdf",
-        headers={"Content-Disposition":
-                 f'attachment; filename="report_{analysis.id}.pdf"'},
-    )

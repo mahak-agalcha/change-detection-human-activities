@@ -27,7 +27,7 @@ export default function Results({ result }) {
   const byCause = countBy(regions, "cause_label");
 
   return (
-    <div style={{ marginTop: 24 }}>
+    <div id="results" style={{ marginTop: 24 }}>
       <h2>Results (status: {result.status})</h2>
 
       <a href={`${API}/analyses/${result.id}/report`}>
