@@ -76,7 +76,7 @@ def main():
             (axes[row, 1], rgb19, "January 2019"),
         ]:
             ax.imshow(image[y0:y1, x0:x1])
-            ax.set_title(f"ID {building_id} — {title}")
+            ax.set_title(f"ID {building_id} - {title}")
             ax.axis("off")
 
             # Plot candidate outline relative to the crop.
