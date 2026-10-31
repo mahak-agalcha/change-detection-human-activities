@@ -82,6 +82,8 @@ def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
     return {
         "id": analysis.id,
         "status": analysis.status,
+        "old_image": f"/files/{analysis.old_image_path}",
+        "new_image": f"/files/{analysis.new_image_path}",
         "created_at": analysis.created_at,
         "regions": [
             {

@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from . import models
 from .routers import analyses
+from fastapi.staticfiles import StaticFiles
+from .config import UPLOAD_DIR
 
 Base.metadata.create_all(bind=engine)
 
@@ -17,6 +19,7 @@ app.add_middleware(
 )
 
 app.include_router(analyses.router)
+app.mount("/files", StaticFiles(directory=UPLOAD_DIR), name="files")
 
 
 @app.get("/health")

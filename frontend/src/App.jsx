@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createAnalysis, runAnalysis, getAnalysis } from "./api";
+import Results from "./Results";
 
 export default function App() {
   const [oldFile, setOldFile] = useState(null);
@@ -30,8 +31,10 @@ export default function App() {
   const preview = (f) => (f ? URL.createObjectURL(f) : null);
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: 24 }}>
-      <h1>Change Detection Using Satellite Imagery</h1>
+    <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
+      <h1 style={{ fontSize: 28, lineHeight: 1.3 }}>
+        Change Detection Using Satellite Imagery
+      </h1>
 
       <div style={{ display: "flex", gap: 24 }}>
         {[
@@ -39,13 +42,19 @@ export default function App() {
           ["New image", newFile, setNewFile],
         ].map(([label, file, setFile]) => (
           <div key={label} style={{ flex: 1 }}>
-            <label>{label}</label>
+            <label>{label} </label>
             <input
               type="file"
               accept=".png,.jpg,.jpeg,.tif,.tiff"
               onChange={(e) => setFile(e.target.files[0] || null)}
             />
-            {file && <img src={preview(file)} alt={label} style={{ width: "100%", marginTop: 8 }} />}
+            {file && (
+              <img
+                src={preview(file)}
+                alt={label}
+                style={{ width: "100%", marginTop: 8 }}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -56,20 +65,7 @@ export default function App() {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {result && (
-        <div style={{ marginTop: 24 }}>
-          <h2>Result (status: {result.status})</h2>
-          {result.regions.length === 0 && <p>No changes detected.</p>}
-          <ul>
-            {result.regions.map((r) => (
-              <li key={r.id}>
-                {r.object_type} | cause: {r.cause_label} | confidence:{" "}
-                {Math.round(r.confidence * 100)}%
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {result && <Results result={result} />}
     </div>
   );
 }
