@@ -14,8 +14,11 @@ function countBy(items, key) {
 }
 
 const card = {
-  flex: 1, padding: 12, border: "1px solid #ccc",
-  borderRadius: 8, textAlign: "center",
+  flex: 1,
+  padding: 12,
+  border: "1px solid #ccc",
+  borderRadius: 8,
+  textAlign: "center",
 };
 
 export default function Results({ result }) {
@@ -27,23 +30,44 @@ export default function Results({ result }) {
     <div style={{ marginTop: 24 }}>
       <h2>Results (status: {result.status})</h2>
 
-      <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-        <div style={card}><b>{regions.length}</b><br />Total changes</div>
+      <a href={`${API}/analyses/${result.id}/report`}>
+        <button>Download PDF report</button>
+      </a>
+
+      <div style={{ display: "flex", gap: 12, margin: "16px 0" }}>
+        <div style={card}>
+          <b>{regions.length}</b>
+          <br />
+          Total changes
+        </div>
         {Object.entries(byType).map(([k, v]) => (
-          <div key={k} style={card}><b>{v}</b><br />{k}</div>
+          <div key={k} style={card}>
+            <b>{v}</b>
+            <br />
+            {k}
+          </div>
         ))}
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>
         <div style={{ flex: 1 }}>
           <p>Old image</p>
-          <img src={`${API}${result.old_image}`} alt="old" style={{ width: "100%" }} />
+          <img
+            src={`${API}${result.old_image}`}
+            alt="old"
+            style={{ width: "100%" }}
+          />
         </div>
         <div style={{ flex: 1 }}>
           <p>New image</p>
-          <img src={`${API}${result.new_image}`} alt="new" style={{ width: "100%" }} />
+          <img
+            src={`${API}${result.new_image}`}
+            alt="new"
+            style={{ width: "100%" }}
+          />
         </div>
       </div>
+
       <h3>Map</h3>
       <ChangeMap regions={regions} />
 
@@ -51,9 +75,18 @@ export default function Results({ result }) {
       {regions.length === 0 ? (
         <p>No changes detected.</p>
       ) : (
-        <table border="1" cellPadding="6" style={{ borderCollapse: "collapse", width: "100%" }}>
+        <table
+          border="1"
+          cellPadding="6"
+          style={{ borderCollapse: "collapse", width: "100%" }}
+        >
           <thead>
-            <tr><th>#</th><th>Object</th><th>Cause analysis</th><th>Confidence</th></tr>
+            <tr>
+              <th>#</th>
+              <th>Object</th>
+              <th>Cause analysis</th>
+              <th>Confidence</th>
+            </tr>
           </thead>
           <tbody>
             {regions.map((r, i) => (
@@ -71,7 +104,8 @@ export default function Results({ result }) {
       <p style={{ fontSize: 12, color: "#666" }}>
         Images show what changed, not why. "Unknown" means there is not enough
         contextual evidence to decide the cause.
-        {Object.keys(byCause).length > 0 && " Causes: " + JSON.stringify(byCause)}
+        {Object.keys(byCause).length > 0 &&
+          " Causes: " + JSON.stringify(byCause)}
       </p>
     </div>
   );

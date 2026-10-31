@@ -11,6 +11,8 @@ from ..config import ALLOWED_EXT, MAX_FILE_MB, UPLOAD_DIR
 from ..database import get_db
 from ..models import Analysis, ChangeRegion
 from ..services.inference import run_inference
+from fastapi.responses import Response
+from ..services.report import build_report
 
 router = APIRouter(prefix="/analyses", tags=["analyses"])
 
@@ -96,3 +98,15 @@ def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
             for r in analysis.regions
         ],
     }
+@router.get("/{analysis_id}/report")
+def download_report(analysis_id: int, db: Session = Depends(get_db)):
+    analysis = db.get(Analysis, analysis_id)
+    if not analysis:
+        raise HTTPException(404, "Analysis not found")
+    pdf = build_report(analysis)
+    return Response(
+        content=pdf,
+        media_type="application/pdf",
+        headers={"Content-Disposition":
+                 f'attachment; filename="report_{analysis.id}.pdf"'},
+    )
