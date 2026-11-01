@@ -91,3 +91,6 @@ venv/
 
 # Frontend
 frontend/node_modules/
+database/data/extracted/
+database/data/extracted/
+database/data/extracted/
