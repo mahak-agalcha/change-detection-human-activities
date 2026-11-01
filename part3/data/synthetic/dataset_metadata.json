@@ -1,0 +1,115 @@
+{
+  "dataset_name": "Part 3 Synthetic Change Interpretation Dataset",
+  "data_type": "SYNTHETIC",
+  "disclaimer": "This dataset is entirely synthetic. It was programmatically generated for software development and testing purposes only. It does NOT represent real-world satellite observations or validated change events.",
+  "version": "1.0.0",
+  "generated_at": "2026-10-31T12:53:30Z",
+  "random_seed": 42,
+  "total_records": 1000,
+  "study_area": {
+    "name": "South Asian Urban Corridor Study Area",
+    "description": "Synthetic study area spanning urban, suburban, rural, coastal, agricultural, industrial, and forest zones. Coordinates are randomly generated within this bounding box.",
+    "crs": "EPSG:4326",
+    "lat_min": 18.5,
+    "lat_max": 29.5,
+    "lon_min": 72.8,
+    "lon_max": 88.4,
+    "region_types": [
+      "urban",
+      "suburban",
+      "rural",
+      "coastal",
+      "agricultural",
+      "industrial",
+      "forest"
+    ]
+  },
+  "temporal_coverage": {
+    "before_date_range": [
+      "2018-01-01",
+      "2022-12-31"
+    ],
+    "after_date_range": [
+      "2018-04-22",
+      "2024-12-31"
+    ],
+    "temporal_gap_days": {
+      "min": 90,
+      "max": 1457,
+      "mean": 769.5
+    }
+  },
+  "schema": {
+    "change_id": "Unique record identifier (string)",
+    "before_date": "Observation date of before-image (YYYY-MM-DD)",
+    "after_date": "Observation date of after-image (YYYY-MM-DD)",
+    "temporal_gap_days": "Days between before and after observation",
+    "change_type": "Specific change type label",
+    "object_type": "Primary object type detected by object detection",
+    "category": "Top-level classification: Human-made | Natural | Uncertain",
+    "confidence_score": "Classification confidence [0.0, 1.0]",
+    "evidence": "Semicolon-separated list of supporting evidence strings",
+    "evidence_count": "Number of evidence items",
+    "latitude": "Centroid latitude (WGS84)",
+    "longitude": "Centroid longitude (WGS84)",
+    "region_type": "Land-use region type of the change location",
+    "area_sqm": "Estimated area of the change region in square metres",
+    "geometry_type": "GeoJSON geometry type: Point or Polygon",
+    "geometry": "GeoJSON geometry object (JSON string in CSV)",
+    "source": "Synthetic data source identifier",
+    "verification_status": "Verification status of the record",
+    "cd_change_magnitude": "Change detection magnitude [0.0, 1.0] (Part 1)",
+    "cd_pixel_change_ratio": "Fraction of pixels that changed (Part 1)",
+    "cd_detection_method": "Change detection algorithm used (Part 1)",
+    "cd_detection_score": "Change detection model score (Part 1)",
+    "od_detection_confidence": "Object detection confidence [0.0, 1.0] (Part 2)",
+    "od_segmentation_available": "Whether segmentation mask is available (Part 2)",
+    "od_bbox_x1": "Object bounding box x1 in pixels (Part 2)",
+    "od_bbox_y1": "Object bounding box y1 in pixels (Part 2)",
+    "od_bbox_x2": "Object bounding box x2 in pixels (Part 2)",
+    "od_bbox_y2": "Object bounding box y2 in pixels (Part 2)",
+    "data_type": "Always SYNTHETIC -- marks this as generated data",
+    "synthetic_seed": "Random seed used for generation",
+    "record_version": "Schema version"
+  },
+  "category_distribution": {
+    "Human-made": 0.5,
+    "Natural": 0.3,
+    "Uncertain": 0.2
+  },
+  "change_types": {
+    "Human-made": [
+      "new_building_construction",
+      "building_demolition",
+      "road_construction",
+      "road_expansion",
+      "vehicle_infrastructure_changes"
+    ],
+    "Natural": [
+      "vegetation_loss",
+      "vegetation_growth",
+      "flooding",
+      "water_body_expansion",
+      "landslide"
+    ],
+    "Uncertain": [
+      "unknown_object_change",
+      "low_confidence_change",
+      "ambiguous_geographical_change"
+    ]
+  },
+  "confidence_ranges": {
+    "Human-made": [
+      0.72,
+      0.97
+    ],
+    "Natural": [
+      0.65,
+      0.93
+    ],
+    "Uncertain": [
+      0.18,
+      0.58
+    ]
+  }
+}

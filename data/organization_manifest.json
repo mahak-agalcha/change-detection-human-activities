@@ -1,0 +1,302 @@
+[
+  {
+    "sample_id": "levir_test_sample_005_suburban_sprawl",
+    "dataset": "LEVIR-CD",
+    "split": "test",
+    "source_id": "sample_005_suburban_sprawl",
+    "before_path": "data\\before\\levir_test_sample_005_suburban_sprawl_before.png",
+    "after_path": "data\\after\\levir_test_sample_005_suburban_sprawl_after.png",
+    "mask_path": "data\\masks\\levir_test_sample_005_suburban_sprawl_mask.png",
+    "composite_path": "data\\processed\\levir_test_sample_005_suburban_sprawl_composite.png"
+  },
+  {
+    "sample_id": "levir_test_sample_006_no_change_control",
+    "dataset": "LEVIR-CD",
+    "split": "test",
+    "source_id": "sample_006_no_change_control",
+    "before_path": "data\\before\\levir_test_sample_006_no_change_control_before.png",
+    "after_path": "data\\after\\levir_test_sample_006_no_change_control_after.png",
+    "mask_path": "data\\masks\\levir_test_sample_006_no_change_control_mask.png",
+    "composite_path": "data\\processed\\levir_test_sample_006_no_change_control_composite.png"
+  },
+  {
+    "sample_id": "levir_train_sample_001_residential",
+    "dataset": "LEVIR-CD",
+    "split": "train",
+    "source_id": "sample_001_residential",
+    "before_path": "data\\before\\levir_train_sample_001_residential_before.png",
+    "after_path": "data\\after\\levir_train_sample_001_residential_after.png",
+    "mask_path": "data\\masks\\levir_train_sample_001_residential_mask.png",
+    "composite_path": "data\\processed\\levir_train_sample_001_residential_composite.png"
+  },
+  {
+    "sample_id": "levir_train_sample_002_commercial",
+    "dataset": "LEVIR-CD",
+    "split": "train",
+    "source_id": "sample_002_commercial",
+    "before_path": "data\\before\\levir_train_sample_002_commercial_before.png",
+    "after_path": "data\\after\\levir_train_sample_002_commercial_after.png",
+    "mask_path": "data\\masks\\levir_train_sample_002_commercial_mask.png",
+    "composite_path": "data\\processed\\levir_train_sample_002_commercial_composite.png"
+  },
+  {
+    "sample_id": "levir_train_sample_003_road_works",
+    "dataset": "LEVIR-CD",
+    "split": "train",
+    "source_id": "sample_003_road_works",
+    "before_path": "data\\before\\levir_train_sample_003_road_works_before.png",
+    "after_path": "data\\after\\levir_train_sample_003_road_works_after.png",
+    "mask_path": "data\\masks\\levir_train_sample_003_road_works_mask.png",
+    "composite_path": "data\\processed\\levir_train_sample_003_road_works_composite.png"
+  },
+  {
+    "sample_id": "levir_val_sample_004_urban_infill",
+    "dataset": "LEVIR-CD",
+    "split": "val",
+    "source_id": "sample_004_urban_infill",
+    "before_path": "data\\before\\levir_val_sample_004_urban_infill_before.png",
+    "after_path": "data\\after\\levir_val_sample_004_urban_infill_after.png",
+    "mask_path": "data\\masks\\levir_val_sample_004_urban_infill_mask.png",
+    "composite_path": "data\\processed\\levir_val_sample_004_urban_infill_composite.png"
+  },
+  {
+    "sample_id": "oscd_brasilia",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "brasilia",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_brasilia_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_chongqing",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "chongqing",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_chongqing_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_dubai",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "dubai",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_dubai_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_lasvegas",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "lasvegas",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_lasvegas_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_milano",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "milano",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_milano_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_montpellier",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "montpellier",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_montpellier_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_norcia",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "norcia",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_norcia_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_rio",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "rio",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_rio_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_saclay_w",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "saclay_w",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_saclay_w_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_valencia",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "valencia",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_valencia_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_abudhabi",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "abudhabi",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_abudhabi_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_aguasclaras",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "aguasclaras",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_aguasclaras_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_beihai",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "beihai",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_beihai_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_beirut",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "beirut",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_beirut_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_bercy",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "bercy",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_bercy_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_bordeaux",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "bordeaux",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_bordeaux_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_cupertino",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "cupertino",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_cupertino_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_hongkong",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "hongkong",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_hongkong_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_mumbai",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "mumbai",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_mumbai_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_nantes",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "nantes",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_nantes_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_paris",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "paris",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_paris_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_pisa",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "pisa",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_pisa_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_rennes",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "rennes",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_rennes_mask.png",
+    "composite_path": null
+  },
+  {
+    "sample_id": "oscd_saclay_e",
+    "dataset": "OSCD",
+    "split": "train_or_test",
+    "source_id": "saclay_e",
+    "before_path": null,
+    "after_path": null,
+    "mask_path": "data\\masks\\oscd_saclay_e_mask.png",
+    "composite_path": null
+  }
+]
