@@ -1,0 +1,11 @@
+region_id,x,y,width,height,area,confidence,confidence_percent,class_label
+1,161,528,10,8,48,0.9497685432434082,94.98,predicted_change_region
+2,134,923,2,1,2,0.9134023189544678,91.34,predicted_change_region
+3,141,922,8,3,18,0.9463630318641663,94.64,predicted_change_region
+4,141,957,6,4,20,0.959695041179657,95.97,predicted_change_region
+5,136,961,1,2,2,0.9209375977516174,92.09,predicted_change_region
+6,173,992,2,3,6,0.9482257962226868,94.82,predicted_change_region
+7,208,998,4,6,16,0.9398612380027771,93.99,predicted_change_region
+8,180,1001,4,4,11,0.9613018035888672,96.13,predicted_change_region
+9,169,1014,1,2,2,0.9224382638931274,92.24,predicted_change_region
+10,850,1015,4,2,7,0.9419371485710144,94.19,predicted_change_region
