@@ -1,0 +1,29 @@
+[
+  {
+    "archive": "levir_cd_sample.zip",
+    "format": "zip",
+    "extracted_count": 18,
+    "uncompressed_bytes": 1611657,
+    "status": "SUCCESS",
+    "target_dir": "data/extracted\\levir_cd_sample",
+    "timestamp": "2026-10-27T19:38:16Z"
+  },
+  {
+    "archive": "oscd_test_labels.zip",
+    "format": "zip",
+    "extracted_count": 42,
+    "uncompressed_bytes": 3120412,
+    "status": "SUCCESS",
+    "target_dir": "data/extracted\\oscd_test_labels",
+    "timestamp": "2026-10-27T19:38:16Z"
+  },
+  {
+    "archive": "oscd_train_labels.zip",
+    "format": "zip",
+    "extracted_count": 58,
+    "uncompressed_bytes": 6623499,
+    "status": "SUCCESS",
+    "target_dir": "data/extracted\\oscd_train_labels",
+    "timestamp": "2026-10-27T19:38:17Z"
+  }
+]

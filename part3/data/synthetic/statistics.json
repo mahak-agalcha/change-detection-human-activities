@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-10-31T12:53:30Z",
+  "total_records": 1000,
+  "category_distribution": {
+    "Human-made": 500,
+    "Natural": 300,
+    "Uncertain": 200
+  },
+  "change_type_distribution": {
+    "road_construction": 111,
+    "building_demolition": 105,
+    "new_building_construction": 95,
+    "road_expansion": 95,
+    "vehicle_infrastructure_changes": 94,
+    "water_body_expansion": 76,
+    "low_confidence_change": 72,
+    "unknown_object_change": 65,
+    "ambiguous_geographical_change": 63,
+    "vegetation_growth": 63,
+    "flooding": 58,
+    "vegetation_loss": 55,
+    "landslide": 48
+  },
+  "confidence_score_by_category": {
+    "Human-made": {
+      "mean": 0.8493,
+      "std": 0.0707,
+      "min": 0.7204,
+      "max": 0.969
+    },
+    "Natural": {
+      "mean": 0.7897,
+      "std": 0.0826,
+      "min": 0.6509,
+      "max": 0.9287
+    },
+    "Uncertain": {
+      "mean": 0.3823,
+      "std": 0.1207,
+      "min": 0.1805,
+      "max": 0.5799
+    }
+  },
+  "verification_status_distribution": {
+    "pending_review": 334,
+    "auto_verified": 270,
+    "verified": 260,
+    "requires_manual_review": 80,
+    "unverified": 56
+  },
+  "region_type_distribution": {
+    "urban": 239,
+    "rural": 223,
+    "suburban": 207,
+    "forest": 93,
+    "industrial": 89,
+    "agricultural": 79,
+    "coastal": 70
+  },
+  "geometry_type_distribution": {
+    "Point": 506,
+    "Polygon": 494
+  },
+  "source_distribution": {
+    "synthetic_levir_cd_simulation": 264,
+    "synthetic_oscd_simulation": 259,
+    "synthetic_sentinel2_simulation": 249,
+    "synthetic_landsat8_simulation": 228
+  },
+  "area_sqm_by_category": {
+    "Human-made": {
+      "mean": 11121.33,
+      "min": 238.45,
+      "max": 49866.88
+    },
+    "Natural": {
+      "mean": 390552.01,
+      "min": 2169.1,
+      "max": 1997854.13
+    },
+    "Uncertain": {
+      "mean": 29932.29,
+      "min": 182.87,
+      "max": 99839.44
+    }
+  },
+  "detection_confidence_by_category": {
+    "Human-made": {
+      "mean": 0.7735,
+      "min": 0.5502,
+      "max": 0.9896
+    },
+    "Natural": {
+      "mean": 0.763,
+      "min": 0.5511,
+      "max": 0.9881
+    },
+    "Uncertain": {
+      "mean": 0.4597,
+      "min": 0.2503,
+      "max": 0.6498
+    }
+  },
+  "temporal_coverage": {
+    "before_date_min": "2018-01-02",
+    "before_date_max": "2022-12-31",
+    "after_date_min": "2018-04-22",
+    "after_date_max": "2024-12-31",
+    "temporal_gap_mean_days": 769.5,
+    "temporal_gap_min_days": 90,
+    "temporal_gap_max_days": 1457
+  },
+  "segmentation_available_count": 385,
+  "evidence_count": {
+    "mean": 3.58,
+    "min": 2,
+    "max": 5
+  }
+}

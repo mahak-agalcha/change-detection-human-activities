@@ -1,11 +1,26 @@
 # change-detection-human-activities
+
 AI/ML-based satellite imagery system for detecting, analyzing, and interpreting changes caused by human activities.
 
-Project objective
-Team members
-Tech stack
-Project architecture
-How to clone
-How to run Docker
-Branching rules
-Part ownership
+## Project objective
+
+## Team members
+
+## Tech stack
+
+## Project architecture
+
+## How to clone
+
+## How to run Docker
+
+## Branching rules
+
+## Part ownership
+
+## Backend, frontend and database
+
+See [Part 4: Backend and Frontend](docs/part4-backend-frontend.md) for implementation details.
+## Backend, Frontend and Database
+
+See [Part 4: Backend and Frontend](docs/part4-backend-frontend.md) for implementation details.

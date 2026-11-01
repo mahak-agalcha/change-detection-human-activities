@@ -1,0 +1,139 @@
+{
+  "validation_timestamp": "2026-10-31T12:53:30Z",
+  "total_checks": 26,
+  "passed_checks": 26,
+  "failed_checks": 0,
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "record_count_is_1000",
+      "passed": true,
+      "detail": "Found 1000 records"
+    },
+    {
+      "check": "no_duplicate_change_ids",
+      "passed": true,
+      "detail": "0 duplicates found"
+    },
+    {
+      "check": "no_nulls_in_change_id",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_before_date",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_after_date",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_change_type",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_object_type",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_category",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_confidence_score",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_latitude",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_longitude",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_geometry",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_source",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "no_nulls_in_verification_status",
+      "passed": true,
+      "detail": "0 nulls"
+    },
+    {
+      "check": "lat_within_study_area",
+      "passed": true,
+      "detail": "lat range: [18.5046, 29.4947]"
+    },
+    {
+      "check": "lon_within_study_area",
+      "passed": true,
+      "detail": "lon range: [72.8694, 88.3496]"
+    },
+    {
+      "check": "confidence_score_in_range",
+      "passed": true,
+      "detail": "range: [0.1805, 0.9690]"
+    },
+    {
+      "check": "valid_category_values",
+      "passed": true,
+      "detail": "set()"
+    },
+    {
+      "check": "change_type_matches_category",
+      "passed": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "check": "object_type_matches_change_type",
+      "passed": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "check": "after_date_after_before_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "temporal_gap_in_valid_range",
+      "passed": true,
+      "detail": "range: [90, 1457] days"
+    },
+    {
+      "check": "geometry_is_valid_geojson",
+      "passed": true,
+      "detail": "0 invalid"
+    },
+    {
+      "check": "area_sqm_positive",
+      "passed": true,
+      "detail": "min area: 182.87 sqm"
+    },
+    {
+      "check": "uncertain_confidence_lower_than_human_made",
+      "passed": true,
+      "detail": "Uncertain mean=0.382, Human-made mean=0.849"
+    },
+    {
+      "check": "all_records_marked_synthetic",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

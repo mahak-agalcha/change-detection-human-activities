@@ -1,0 +1,139 @@
+{
+  "summary": {
+    "total_samples": 6,
+    "valid_samples": 6,
+    "warning_samples": 1,
+    "failed_samples": 0,
+    "mask_format_errors": 0,
+    "health_score": 100.0
+  },
+  "results": [
+    {
+      "sample_id": "levir_test_sample_005_suburban_sprawl",
+      "valid": true,
+      "warnings": [],
+      "errors": [],
+      "metrics": {
+        "width": 256,
+        "height": 256,
+        "before_mode": "RGB",
+        "after_mode": "RGB",
+        "mask_mode": "L",
+        "mask_unique_values": [
+          0,
+          255
+        ],
+        "total_pixels": 65536,
+        "changed_pixels": 20083,
+        "unchanged_pixels": 45453,
+        "change_percentage": 30.644
+      }
+    },
+    {
+      "sample_id": "levir_test_sample_006_no_change_control",
+      "valid": true,
+      "warnings": [
+        "No change pixels detected in mask (0.0% change - potential control or negative pair)"
+      ],
+      "errors": [],
+      "metrics": {
+        "width": 256,
+        "height": 256,
+        "before_mode": "RGB",
+        "after_mode": "RGB",
+        "mask_mode": "L",
+        "mask_unique_values": [
+          0
+        ],
+        "total_pixels": 65536,
+        "changed_pixels": 0,
+        "unchanged_pixels": 65536,
+        "change_percentage": 0.0
+      }
+    },
+    {
+      "sample_id": "levir_train_sample_001_residential",
+      "valid": true,
+      "warnings": [],
+      "errors": [],
+      "metrics": {
+        "width": 256,
+        "height": 256,
+        "before_mode": "RGB",
+        "after_mode": "RGB",
+        "mask_mode": "L",
+        "mask_unique_values": [
+          0,
+          255
+        ],
+        "total_pixels": 65536,
+        "changed_pixels": 11502,
+        "unchanged_pixels": 54034,
+        "change_percentage": 17.551
+      }
+    },
+    {
+      "sample_id": "levir_train_sample_002_commercial",
+      "valid": true,
+      "warnings": [],
+      "errors": [],
+      "metrics": {
+        "width": 256,
+        "height": 256,
+        "before_mode": "RGB",
+        "after_mode": "RGB",
+        "mask_mode": "L",
+        "mask_unique_values": [
+          0,
+          255
+        ],
+        "total_pixels": 65536,
+        "changed_pixels": 16761,
+        "unchanged_pixels": 48775,
+        "change_percentage": 25.575
+      }
+    },
+    {
+      "sample_id": "levir_train_sample_003_road_works",
+      "valid": true,
+      "warnings": [],
+      "errors": [],
+      "metrics": {
+        "width": 256,
+        "height": 256,
+        "before_mode": "RGB",
+        "after_mode": "RGB",
+        "mask_mode": "L",
+        "mask_unique_values": [
+          0,
+          255
+        ],
+        "total_pixels": 65536,
+        "changed_pixels": 11466,
+        "unchanged_pixels": 54070,
+        "change_percentage": 17.496
+      }
+    },
+    {
+      "sample_id": "levir_val_sample_004_urban_infill",
+      "valid": true,
+      "warnings": [],
+      "errors": [],
+      "metrics": {
+        "width": 256,
+        "height": 256,
+        "before_mode": "RGB",
+        "after_mode": "RGB",
+        "mask_mode": "L",
+        "mask_unique_values": [
+          0,
+          255
+        ],
+        "total_pixels": 65536,
+        "changed_pixels": 6932,
+        "unchanged_pixels": 58604,
+        "change_percentage": 10.577
+      }
+    }
+  ]
+}
