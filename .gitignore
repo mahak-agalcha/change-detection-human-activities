@@ -74,3 +74,19 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+# Database
+backend/app.db
+
+# Uploaded files
+backend/storage/uploads/*
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Environment
+.env
+
+# Frontend
+frontend/node_modules/
