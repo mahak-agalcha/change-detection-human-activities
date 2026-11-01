@@ -1,0 +1,42 @@
+[
+  {
+    "dataset": "LEVIR-CD",
+    "file": "levir_cd_sample.zip",
+    "size_bytes": 1613756,
+    "md5": "d92403cf5f42ce1c764a571a58391276",
+    "sha256": "e6f39222851efe7aa31919e1b6b6e6311efd519b34847ae0b37271bedf162c8e",
+    "source": "LEVIR-CD Benchmark Suite",
+    "download_status": "SUCCESS_VERIFIED",
+    "timestamp": "2026-10-27T19:36:41Z"
+  },
+  {
+    "dataset": "OSCD",
+    "file": "oscd_train_labels.zip",
+    "size_bytes": 137873,
+    "md5": "4d2965af8170c705ebad3d6ee71b6990",
+    "sha256": "89fb54cd12ad0dbea6c447528139dec305b865294215434bf6dd170fb8fd3ca5",
+    "source": "Official Mines-Telecom Mirror",
+    "download_status": "SUCCESS_VERIFIED",
+    "timestamp": "2026-10-27T19:36:41Z"
+  },
+  {
+    "dataset": "OSCD",
+    "file": "oscd_test_labels.zip",
+    "size_bytes": 83614,
+    "md5": "8177d437793c522653c442aa4e66c617",
+    "sha256": "2e195eaa1b788b99fa93ea8073e3780bc0b763000b0c49dbf70548acf1e5d67d",
+    "source": "Official IMT Mirror",
+    "download_status": "SUCCESS_VERIFIED",
+    "timestamp": "2026-10-27T19:36:41Z"
+  },
+  {
+    "dataset": "OSCD",
+    "file": "oscd_images.zip",
+    "size_bytes": 0,
+    "md5": null,
+    "sha256": null,
+    "source": "https://partage.imt.fr/index.php/s/gKRaWgRnLMfwMGo/download",
+    "download_status": "PENDING_OPTIONAL_LARGE_ARCHIVE (488MB available via download_dataset.py --dataset oscd)",
+    "timestamp": "2026-10-27T19:36:41Z"
+  }
+]

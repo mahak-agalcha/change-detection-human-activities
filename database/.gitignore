@@ -1,0 +1,39 @@
+# Human Activity Change Detection Dataset Repository
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Large Dataset Archives (Preserve download scripts and sample data only)
+data/raw/*.zip
+data/raw/*.tar.gz
+data/raw/*.tar
+data/raw/*.tgz
+data/raw/*.7z
+!data/raw/.gitkeep
+!data/raw/download_manifest.json
+
+# Extracted files
+data/extracted/*
+!data/extracted/.gitkeep
+!data/extracted/extraction_manifest.json
+
+# Processed full dataset binaries (large)
+data/processed/*.npy
+data/processed/*.h5
+!data/processed/.gitkeep
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo

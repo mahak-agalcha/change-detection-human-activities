@@ -1,0 +1,66 @@
+cff-version: 1.2.0
+message: "If you use this dataset collection tooling, pipeline, or verification benchmarks in your research, please cite it as below."
+title: "Change Detection Due to Human Activities Using Satellite/Aerial Images: Dataset Pipeline and Verification Benchmark"
+version: 1.0.0
+date-released: 2026-10-28
+type: dataset
+abstract: >-
+  Reproducible dataset collection, automated extraction, structural pairing,
+  validation, and cataloging pipeline for satellite and aerial imagery change detection
+  focusing specifically on human-induced activities (urban development, building
+  construction, and earthworks). Built as Part 1 (Data Pipeline) of the B.Tech Major
+  Project at the Department of Computer Science and Engineering.
+authors:
+  - family-names: "Upadhyay"
+    given-names: "Palak"
+    role: "Dataset Collection, Verification, and Pipeline Lead"
+  - family-names: "Agalcha"
+    given-names: "Mahak"
+  - family-names: "Kushwah"
+    given-names: "Krishna"
+  - family-names: "Choukad"
+    given-names: "Shreeyashi"
+contact:
+  - name: "Dr. Sandeep Kumar Jain"
+    role: "Project Guide / Faculty Supervisor"
+keywords:
+  - "remote sensing"
+  - "change detection"
+  - "human activities"
+  - "satellite imagery"
+  - "aerial imagery"
+  - "urban expansion"
+  - "LEVIR-CD"
+  - "OSCD"
+  - "computer vision"
+  - "deep learning"
+license: "MIT"
+references:
+  - type: article
+    title: "A Spatial-Temporal Attention-Based Method and a New Dataset for Remote Sensing Image Change Detection"
+    authors:
+      - family-names: "Chen"
+        given-names: "Hao"
+      - family-names: "Shi"
+        given-names: "Zhenwei"
+    journal: "Remote Sensing"
+    volume: 12
+    issue: 10
+    year: 2020
+    pages: "1662"
+    doi: "10.3390/rs12101662"
+  - type: conference-paper
+    title: "Urban Change Detection for Multispectral Earth Observation Using Convolutional Neural Networks"
+    authors:
+      - family-names: "Daudt"
+        given-names: "Rodrigo Caye"
+      - family-names: "Le Saux"
+        given-names: "Bertrand"
+      - family-names: "Boulch"
+        given-names: "Alexandre"
+      - family-names: "Gousseau"
+        given-names: "Yann"
+    collection-title: "IEEE International Geoscience and Remote Sensing Symposium (IGARSS 2018)"
+    year: 2018
+    pages: "2115-2118"
+    doi: "10.1109/IGARSS.2018.8518015"
