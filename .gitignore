@@ -1,3 +1,4 @@
+
 # =========================
 # Python
 # =========================
@@ -31,6 +32,7 @@ ENV/
 # =========================
 data/raw/*
 data/processed/*
+database/data/extracted/
 
 # Keep README files inside data folders
 !data/raw/README.md
@@ -45,6 +47,11 @@ models/checkpoints/
 *.ckpt
 *.onnx
 *.safetensors
+
+# =========================
+# Database
+# =========================
+*.db
 
 # =========================
 # Logs
@@ -74,23 +81,13 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
-# Database
-*.db
 
+# =========================
+# Uploaded Files
+# =========================
+backend/storage/uploads/
 
-# Uploaded files
-backend/storage/uploads/*
-
-# Python
-__pycache__/
-*.pyc
-venv/
-
-# Environment
-.env
-
+# =========================
 # Frontend
+# =========================
 frontend/node_modules/
-database/data/extracted/
-database/data/extracted/
-database/data/extracted/
