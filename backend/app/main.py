@@ -6,6 +6,7 @@ from . import models
 from .routers import analyses
 from fastapi.staticfiles import StaticFiles
 from .config import UPLOAD_DIR
+from .config import UPLOAD_DIR, settings
 
 Base.metadata.create_all(bind=engine)
 
@@ -13,7 +14,7 @@ app = FastAPI(title="Change Detection API", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_origins=[o.strip() for o in settings.CORS_ORIGINS.split(",")],
     allow_methods=["*"],
     allow_headers=["*"],
 )
