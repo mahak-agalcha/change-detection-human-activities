@@ -75,7 +75,8 @@ Thumbs.db
 *.temp
 .cache/
 # Database
-backend/app.db
+*.db
+
 
 # Uploaded files
 backend/storage/uploads/*
