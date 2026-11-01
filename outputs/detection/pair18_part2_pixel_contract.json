@@ -1,0 +1,265 @@
+{
+    "source": "SpaceNet7 pair_18",
+    "coordinate_space": "pixel",
+    "crs": null,
+    "features": [
+        {
+            "region_id": 1,
+            "object_type": "building",
+            "object_confidence": 0.896,
+            "change_confidence": 0.3161316215991974,
+            "cause_label": "unknown",
+            "confidence": 0.896,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            166.0,
+                            1011.0
+                        ],
+                        [
+                            166.0,
+                            1017.0
+                        ],
+                        [
+                            168.0,
+                            1018.0
+                        ],
+                        [
+                            170.0,
+                            1018.0
+                        ],
+                        [
+                            170.0,
+                            1016.0
+                        ],
+                        [
+                            171.0,
+                            1015.0
+                        ],
+                        [
+                            171.0,
+                            1011.0
+                        ],
+                        [
+                            166.0,
+                            1011.0
+                        ]
+                    ]
+                ]
+            },
+            "coordinate_space": "pixel",
+            "area_pixels": 31.0,
+            "area_sq_m": null
+        },
+        {
+            "region_id": 2,
+            "object_type": "building",
+            "object_confidence": 0.762,
+            "change_confidence": 0.12827210128307343,
+            "cause_label": "unknown",
+            "confidence": 0.762,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            170.0,
+                            989.0
+                        ],
+                        [
+                            170.0,
+                            997.0
+                        ],
+                        [
+                            178.0,
+                            998.0
+                        ],
+                        [
+                            177.0,
+                            1006.0
+                        ],
+                        [
+                            185.0,
+                            1007.0
+                        ],
+                        [
+                            185.0,
+                            998.0
+                        ],
+                        [
+                            178.0,
+                            998.0
+                        ],
+                        [
+                            177.0,
+                            989.0
+                        ],
+                        [
+                            170.0,
+                            989.0
+                        ]
+                    ]
+                ]
+            },
+            "coordinate_space": "pixel",
+            "area_pixels": 130.0,
+            "area_sq_m": null
+        },
+        {
+            "region_id": 3,
+            "object_type": "building",
+            "object_confidence": 0.786,
+            "change_confidence": 0.4097598195075989,
+            "cause_label": "unknown",
+            "confidence": 0.786,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            144.0,
+                            957.0
+                        ],
+                        [
+                            143.0,
+                            958.0
+                        ],
+                        [
+                            144.0,
+                            963.0
+                        ],
+                        [
+                            148.0,
+                            963.0
+                        ],
+                        [
+                            149.0,
+                            961.0
+                        ],
+                        [
+                            147.0,
+                            962.0
+                        ],
+                        [
+                            146.0,
+                            961.0
+                        ],
+                        [
+                            146.0,
+                            958.0
+                        ],
+                        [
+                            144.0,
+                            957.0
+                        ]
+                    ]
+                ]
+            },
+            "coordinate_space": "pixel",
+            "area_pixels": 19.0,
+            "area_sq_m": null
+        },
+        {
+            "region_id": 4,
+            "object_type": "building",
+            "object_confidence": 0.894,
+            "change_confidence": 0.3078816533088684,
+            "cause_label": "unknown",
+            "confidence": 0.894,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            131.0,
+                            920.0
+                        ],
+                        [
+                            131.0,
+                            926.0
+                        ],
+                        [
+                            151.0,
+                            927.0
+                        ],
+                        [
+                            151.0,
+                            920.0
+                        ],
+                        [
+                            150.0,
+                            922.0
+                        ],
+                        [
+                            147.0,
+                            919.0
+                        ],
+                        [
+                            131.0,
+                            920.0
+                        ]
+                    ]
+                ]
+            },
+            "coordinate_space": "pixel",
+            "area_pixels": 134.0,
+            "area_sq_m": null
+        },
+        {
+            "region_id": 5,
+            "object_type": "building",
+            "object_confidence": 0.91,
+            "change_confidence": 0.5027350187301636,
+            "cause_label": "unknown",
+            "confidence": 0.91,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            161.0,
+                            525.0
+                        ],
+                        [
+                            158.0,
+                            529.0
+                        ],
+                        [
+                            158.0,
+                            537.0
+                        ],
+                        [
+                            170.0,
+                            538.0
+                        ],
+                        [
+                            173.0,
+                            535.0
+                        ],
+                        [
+                            173.0,
+                            529.0
+                        ],
+                        [
+                            170.0,
+                            529.0
+                        ],
+                        [
+                            169.0,
+                            525.0
+                        ],
+                        [
+                            161.0,
+                            525.0
+                        ]
+                    ]
+                ]
+            },
+            "coordinate_space": "pixel",
+            "area_pixels": 164.0,
+            "area_sq_m": null
+        }
+    ]
+}
