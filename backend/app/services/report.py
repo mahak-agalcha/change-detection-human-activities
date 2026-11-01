@@ -35,6 +35,11 @@ def build_report(analysis) -> bytes:
         Paragraph("Change Detection Report", s["Title"]),
         Paragraph(f"Analysis ID: {analysis.id} &nbsp;|&nbsp; "
                   f"Status: {analysis.status}", s["Normal"]),
+        Paragraph(f"Location: {analysis.location_name or 'Not provided'}",
+                  s["Normal"]),
+        Paragraph(f"Old image date: {analysis.old_date or 'Not provided'}"
+                  f" &nbsp;|&nbsp; New image date: "
+                  f"{analysis.new_date or 'Not provided'}", s["Normal"]),
         Paragraph(f"Generated: {datetime.now():%Y-%m-%d %H:%M}", s["Normal"]),
         Spacer(1, 14),
     ]

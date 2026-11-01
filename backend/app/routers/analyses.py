@@ -1,9 +1,10 @@
 import io
 import json
 import uuid
+from datetime import datetime
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from fastapi.responses import Response
 from PIL import Image
 from sqlalchemy import func, select
@@ -16,6 +17,16 @@ from ..services.inference import run_inference
 from ..services.report import build_report
 
 router = APIRouter(prefix="/analyses", tags=["analyses"])
+
+
+def check_date(value: str | None, label: str) -> str | None:
+    if not value:
+        return None
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError:
+        raise HTTPException(400, f"{label} must be in YYYY-MM-DD format")
+    return value
 
 
 async def save_image(file: UploadFile) -> str:
@@ -42,11 +53,28 @@ async def save_image(file: UploadFile) -> str:
 async def create_analysis(
     old_image: UploadFile = File(...),
     new_image: UploadFile = File(...),
+    location_name: str | None = Form(None),
+    old_date: str | None = Form(None),
+    new_date: str | None = Form(None),
     db: Session = Depends(get_db),
 ):
+    location_name = (location_name or "").strip() or None
+    if location_name and len(location_name) > 120:
+        raise HTTPException(400, "Location name is too long (max 120)")
+    old_date = check_date(old_date, "Old date")
+    new_date = check_date(new_date, "New date")
+    if old_date and new_date and old_date > new_date:
+        raise HTTPException(400, "Old image date must not be after new image date")
+
     old_name = await save_image(old_image)
     new_name = await save_image(new_image)
-    analysis = Analysis(old_image_path=old_name, new_image_path=new_name)
+    analysis = Analysis(
+        old_image_path=old_name,
+        new_image_path=new_name,
+        location_name=location_name,
+        old_date=old_date,
+        new_date=new_date,
+    )
     db.add(analysis)
     db.commit()
     db.refresh(analysis)
@@ -63,6 +91,9 @@ def list_analyses(db: Session = Depends(get_db)):
             "id": a.id,
             "status": a.status,
             "created_at": a.created_at,
+            "location_name": a.location_name,
+            "old_date": a.old_date,
+            "new_date": a.new_date,
             "regions_count": len(a.regions),
         }
         for a in rows
@@ -135,6 +166,9 @@ def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
     return {
         "id": analysis.id,
         "status": analysis.status,
+        "location_name": analysis.location_name,
+        "old_date": analysis.old_date,
+        "new_date": analysis.new_date,
         "old_image": f"/files/{analysis.old_image_path}",
         "new_image": f"/files/{analysis.new_image_path}",
         "created_at": analysis.created_at,

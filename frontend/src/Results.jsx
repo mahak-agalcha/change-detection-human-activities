@@ -29,6 +29,11 @@ export default function Results({ result }) {
   return (
     <div id="results" style={{ marginTop: 24 }}>
       <h2>Results (status: {result.status})</h2>
+      <p>
+        Location: <b>{result.location_name || "Not provided"}</b> | Old image:{" "}
+        <b>{result.old_date || "n/a"}</b> | New image:{" "}
+        <b>{result.new_date || "n/a"}</b>
+      </p>
 
       <a href={`${API}/analyses/${result.id}/report`}>
         <button>Download PDF report</button>

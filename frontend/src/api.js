@@ -8,10 +8,13 @@ async function handle(res) {
   return res.json();
 }
 
-export async function createAnalysis(oldFile, newFile) {
+export async function createAnalysis(oldFile, newFile, meta = {}) {
   const form = new FormData();
   form.append("old_image", oldFile);
   form.append("new_image", newFile);
+  if (meta.location_name) form.append("location_name", meta.location_name);
+  if (meta.old_date) form.append("old_date", meta.old_date);
+  if (meta.new_date) form.append("new_date", meta.new_date);
   return handle(await fetch(`${API}/analyses`, { method: "POST", body: form }));
 }
 
@@ -22,6 +25,7 @@ export async function runAnalysis(id) {
 export async function getAnalysis(id) {
   return handle(await fetch(`${API}/analyses/${id}`));
 }
+
 export async function listAnalyses() {
   return handle(await fetch(`${API}/analyses`));
 }

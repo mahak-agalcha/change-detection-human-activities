@@ -12,6 +12,9 @@ import History from "./History";
 export default function App() {
   const [oldFile, setOldFile] = useState(null);
   const [newFile, setNewFile] = useState(null);
+  const [location, setLocation] = useState("");
+  const [oldDate, setOldDate] = useState("");
+  const [newDate, setNewDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
@@ -31,6 +34,16 @@ export default function App() {
     refresh();
   }, []);
 
+  function scrollToResults() {
+    setTimeout(
+      () =>
+        document
+          .getElementById("results")
+          ?.scrollIntoView({ behavior: "smooth" }),
+      100
+    );
+  }
+
   async function handleSubmit() {
     setError("");
     setResult(null);
@@ -38,12 +51,21 @@ export default function App() {
       setError("Please select both images.");
       return;
     }
+    if (oldDate && newDate && oldDate > newDate) {
+      setError("Old image date must not be after new image date.");
+      return;
+    }
     setLoading(true);
     try {
-      const { id } = await createAnalysis(oldFile, newFile);
+      const { id } = await createAnalysis(oldFile, newFile, {
+        location_name: location.trim(),
+        old_date: oldDate,
+        new_date: newDate,
+      });
       await runAnalysis(id);
       setResult(await getAnalysis(id));
       await refresh();
+      scrollToResults();
     } catch (e) {
       setError(e.message);
     } finally {
@@ -55,13 +77,7 @@ export default function App() {
     setError("");
     try {
       setResult(await getAnalysis(id));
-      setTimeout(
-        () =>
-          document
-            .getElementById("results")
-            ?.scrollIntoView({ behavior: "smooth" }),
-        100
-      );
+      scrollToResults();
     } catch (e) {
       setError(e.message);
     }
@@ -77,9 +93,9 @@ export default function App() {
 
       <div style={{ display: "flex", gap: 24 }}>
         {[
-          ["Old image", oldFile, setOldFile],
-          ["New image", newFile, setNewFile],
-        ].map(([label, file, setFile]) => (
+          ["Old image", oldFile, setOldFile, oldDate, setOldDate],
+          ["New image", newFile, setNewFile, newDate, setNewDate],
+        ].map(([label, file, setFile, date, setDate]) => (
           <div key={label} style={{ flex: 1 }}>
             <label>{label} </label>
             <input
@@ -87,6 +103,14 @@ export default function App() {
               accept=".png,.jpg,.jpeg,.tif,.tiff"
               onChange={(e) => setFile(e.target.files[0] || null)}
             />
+            <div style={{ marginTop: 8 }}>
+              <label>Capture date </label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
             {file && (
               <img
                 src={preview(file)}
@@ -96,6 +120,18 @@ export default function App() {
             )}
           </div>
         ))}
+      </div>
+
+      <div style={{ marginTop: 16 }}>
+        <label>Location </label>
+        <input
+          type="text"
+          value={location}
+          maxLength={120}
+          placeholder="e.g. Indore, Madhya Pradesh"
+          onChange={(e) => setLocation(e.target.value)}
+          style={{ width: 300 }}
+        />
       </div>
 
       <button onClick={handleSubmit} disabled={loading} style={{ marginTop: 16 }}>

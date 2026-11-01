@@ -25,7 +25,8 @@ export default function History({ history, stats, onOpen }) {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Date</th>
+              <th>Location</th>
+              <th>Image dates</th>
               <th>Status</th>
               <th>Changes</th>
               <th>Actions</th>
@@ -35,7 +36,10 @@ export default function History({ history, stats, onOpen }) {
             {history.map((a) => (
               <tr key={a.id}>
                 <td>{a.id}</td>
-                <td>{new Date(a.created_at).toLocaleString()}</td>
+                <td>{a.location_name || "-"}</td>
+                <td>
+                  {a.old_date || "?"} to {a.new_date || "?"}
+                </td>
                 <td>{a.status}</td>
                 <td>{a.regions_count}</td>
                 <td>
