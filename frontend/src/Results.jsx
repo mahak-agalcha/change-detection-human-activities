@@ -1,11 +1,15 @@
 import { API } from "./api";
 import ChangeMap from "./ChangeMap";
+import CompareSlider from "./CompareSlider";
+
+const PLACEHOLDER_MODEL = true; // set to false once the real model is connected
 
 const CAUSE_TEXT = {
   human: "Likely human-related",
   natural: "Likely natural / disaster-related",
   unknown: "Unknown (insufficient evidence)",
 };
+const TYPE_ICON = { building: "🏢", road: "🛣️", vehicle: "🚗" };
 
 function countBy(items, key) {
   const out = {};
@@ -13,104 +17,103 @@ function countBy(items, key) {
   return out;
 }
 
-const card = {
-  flex: 1,
-  padding: 12,
-  border: "1px solid #ccc",
-  borderRadius: 8,
-  textAlign: "center",
-};
-
 export default function Results({ result }) {
   const regions = result.regions;
   const byType = countBy(regions, "object_type");
-  const byCause = countBy(regions, "cause_label");
 
   return (
-    <div id="results" style={{ marginTop: 24 }}>
-      <h2>Results (status: {result.status})</h2>
-      <p>
-        Location: <b>{result.location_name || "Not provided"}</b> | Old image:{" "}
-        <b>{result.old_date || "n/a"}</b> | New image:{" "}
-        <b>{result.new_date || "n/a"}</b>
-      </p>
+    <div id="results" className="panel">
+      <h2>Results</h2>
+      <div className="chips">
+        <span className="chip">📍 {result.location_name || "Location not provided"}</span>
+        <span className="chip">Old: {result.old_date || "n/a"}</span>
+        <span className="chip">New: {result.new_date || "n/a"}</span>
+        <span className="chip">Status: {result.status}</span>
+      </div>
 
-      <a href={`${API}/analyses/${result.id}/report`}>
-        <button>Download PDF report</button>
+      {PLACEHOLDER_MODEL && (
+        <div className="banner">
+          Prototype output: the detection below comes from a placeholder, not
+          the trained model. Do not treat it as a real finding.
+        </div>
+      )}
+
+      <a className="btn-ghost" href={`${API}/analyses/${result.id}/report`}>
+        Download PDF report
       </a>
 
-      <div style={{ display: "flex", gap: 12, margin: "16px 0" }}>
-        <div style={card}>
+      <div className="stats">
+        <div className="stat">
           <b>{regions.length}</b>
-          <br />
-          Total changes
+          <span>Total changes</span>
         </div>
         {Object.entries(byType).map(([k, v]) => (
-          <div key={k} style={card}>
+          <div className="stat" key={k}>
             <b>{v}</b>
-            <br />
-            {k}
+            <span>
+              {TYPE_ICON[k] || "•"} {k}
+            </span>
           </div>
         ))}
       </div>
 
-      <div style={{ display: "flex", gap: 12 }}>
-        <div style={{ flex: 1 }}>
-          <p>Old image</p>
-          <img
-            src={`${API}${result.old_image}`}
-            alt="old"
-            style={{ width: "100%" }}
-          />
-        </div>
-        <div style={{ flex: 1 }}>
-          <p>New image</p>
-          <img
-            src={`${API}${result.new_image}`}
-            alt="new"
-            style={{ width: "100%" }}
-          />
-        </div>
-      </div>
+      <h3>Compare images</h3>
+      <p className="note" style={{ marginTop: 0 }}>
+        Drag across the image to compare before and after.
+      </p>
+      <CompareSlider
+        before={`${API}${result.old_image}`}
+        after={`${API}${result.new_image}`}
+      />
 
-      <h3>Map</h3>
+      <h3 style={{ marginTop: 20 }}>Map</h3>
       <ChangeMap regions={regions} />
 
-      <h3>Detected changes</h3>
+      <h3 style={{ marginTop: 20 }}>Detected changes</h3>
       {regions.length === 0 ? (
-        <p>No changes detected.</p>
+        <p className="empty">No changes detected.</p>
       ) : (
-        <table
-          border="1"
-          cellPadding="6"
-          style={{ borderCollapse: "collapse", width: "100%" }}
-        >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Object</th>
-              <th>Cause analysis</th>
-              <th>Confidence</th>
-            </tr>
-          </thead>
-          <tbody>
-            {regions.map((r, i) => (
-              <tr key={r.id}>
-                <td>{i + 1}</td>
-                <td>{r.object_type}</td>
-                <td>{CAUSE_TEXT[r.cause_label] || r.cause_label}</td>
-                <td>{Math.round(r.confidence * 100)}%</td>
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Object</th>
+                <th>Cause analysis</th>
+                <th>Confidence</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {regions.map((r, i) => {
+                const pct = Math.round(r.confidence * 100);
+                return (
+                  <tr key={r.id}>
+                    <td>{i + 1}</td>
+                    <td>
+                      {TYPE_ICON[r.object_type] || "•"} {r.object_type}
+                    </td>
+                    <td>
+                      <span className={`badge b-${r.cause_label}`}>
+                        {CAUSE_TEXT[r.cause_label] || r.cause_label}
+                      </span>
+                    </td>
+                    <td>
+                      <span className="bar">
+                        <span style={{ width: `${pct}%` }} />
+                      </span>
+                      {pct}%
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
 
-      <p style={{ fontSize: 12, color: "#666" }}>
+      <p className="note">
         Images show what changed, not why. "Unknown" means there is not enough
         contextual evidence to decide the cause.
-        {Object.keys(byCause).length > 0 &&
-          " Causes: " + JSON.stringify(byCause)}
       </p>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   createAnalysis,
   runAnalysis,
@@ -8,6 +8,53 @@ import {
 } from "./api";
 import Results from "./Results";
 import History from "./History";
+
+const APP_NAME = "GeoShift";
+
+function UploadCard({ label, file, onFile, date, onDate }) {
+  const [over, setOver] = useState(false);
+  const url = useMemo(() => (file ? URL.createObjectURL(file) : null), [file]);
+
+  function onDrop(e) {
+    e.preventDefault();
+    setOver(false);
+    if (e.dataTransfer.files[0]) onFile(e.dataTransfer.files[0]);
+  }
+
+  return (
+    <div>
+      <label
+        className={`drop ${over ? "over" : ""}`}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setOver(true);
+        }}
+        onDragLeave={() => setOver(false)}
+        onDrop={onDrop}
+      >
+        {url ? (
+          <img src={url} alt={label} />
+        ) : (
+          <>
+            <span className="big">🛰️</span>
+            <b>{label}</b>
+            <span>Drag and drop or click to choose</span>
+            <span style={{ fontSize: 12 }}>PNG, JPG or TIFF, up to 20 MB</span>
+          </>
+        )}
+        <input
+          type="file"
+          accept=".png,.jpg,.jpeg,.tif,.tiff"
+          onChange={(e) => onFile(e.target.files[0] || null)}
+        />
+      </label>
+      <div className="field">
+        Capture date
+        <input type="date" value={date} onChange={(e) => onDate(e.target.value)} />
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
   const [oldFile, setOldFile] = useState(null);
@@ -83,62 +130,65 @@ export default function App() {
     }
   }
 
-  const preview = (f) => (f ? URL.createObjectURL(f) : null);
+  const step = result ? 3 : loading ? 2 : 1;
+  const stepClass = (n) => (step === n ? "active" : step > n ? "done" : "");
 
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
-      <h1 style={{ fontSize: 28, lineHeight: 1.3 }}>
-        Change Detection Using Satellite Imagery
-      </h1>
+    <div className="container">
+      <div className="header">
+        <div className="brand">
+          <div className="logo">🌍</div>
+          {APP_NAME}
+        </div>
+        <span className="pill">Satellite change detection</span>
+      </div>
+      <p className="tagline">
+        See what changed between two satellite images, and be honest about why.
+      </p>
 
-      <div style={{ display: "flex", gap: 24 }}>
-        {[
-          ["Old image", oldFile, setOldFile, oldDate, setOldDate],
-          ["New image", newFile, setNewFile, newDate, setNewDate],
-        ].map(([label, file, setFile, date, setDate]) => (
-          <div key={label} style={{ flex: 1 }}>
-            <label>{label} </label>
+      <div className="steps">
+        <div className={`step ${stepClass(1)}`}>1. Upload</div>
+        <div className={`step ${stepClass(2)}`}>2. Analyze</div>
+        <div className={`step ${stepClass(3)}`}>3. Review</div>
+      </div>
+
+      <div className="panel">
+        <div className="grid2">
+          <UploadCard
+            label="Old image"
+            file={oldFile}
+            onFile={setOldFile}
+            date={oldDate}
+            onDate={setOldDate}
+          />
+          <UploadCard
+            label="New image"
+            file={newFile}
+            onFile={setNewFile}
+            date={newDate}
+            onDate={setNewDate}
+          />
+        </div>
+
+        <div className="row">
+          <div className="field">
+            Location
             <input
-              type="file"
-              accept=".png,.jpg,.jpeg,.tif,.tiff"
-              onChange={(e) => setFile(e.target.files[0] || null)}
+              type="text"
+              value={location}
+              maxLength={120}
+              placeholder="e.g. Indore, Madhya Pradesh"
+              onChange={(e) => setLocation(e.target.value)}
             />
-            <div style={{ marginTop: 8 }}>
-              <label>Capture date </label>
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-              />
-            </div>
-            {file && (
-              <img
-                src={preview(file)}
-                alt={label}
-                style={{ width: "100%", marginTop: 8 }}
-              />
-            )}
           </div>
-        ))}
+          <button className="btn" onClick={handleSubmit} disabled={loading}>
+            {loading && <span className="spinner" />}
+            {loading ? "Analyzing..." : "Analyze changes"}
+          </button>
+        </div>
+
+        {error && <div className="error">{error}</div>}
       </div>
-
-      <div style={{ marginTop: 16 }}>
-        <label>Location </label>
-        <input
-          type="text"
-          value={location}
-          maxLength={120}
-          placeholder="e.g. Indore, Madhya Pradesh"
-          onChange={(e) => setLocation(e.target.value)}
-          style={{ width: 300 }}
-        />
-      </div>
-
-      <button onClick={handleSubmit} disabled={loading} style={{ marginTop: 16 }}>
-        {loading ? "Analyzing..." : "Analyze"}
-      </button>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
 
       {result && <Results result={result} />}
 
